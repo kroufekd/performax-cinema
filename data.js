@@ -658,6 +658,7 @@ let data = [
         ]
     }  
 ];
+//načítaní dat ze statických nebo z localStorage
 let sessions;
 if(localStorage.getItem("sessions")){
     sessions = JSON.parse(localStorage.getItem("sessions"));

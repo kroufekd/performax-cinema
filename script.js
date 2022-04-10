@@ -1,13 +1,12 @@
-document.getElementById("session-details").style.display = "none";
+document.getElementById("session-details").style.display = "none"; //skrytí divu při načtění stránky
 
-function selectDate(date){
+function selectDate(date){ //uložení vybranéo datumu do localStorage
 
     let curr_date = new Date();
     let selected_date = new Date(date);
 
     document.getElementById("error").innerHTML = "";
    
-    
     let date_in_a_week = new Date();
     date_in_a_week.setDate(date_in_a_week.getDate() + 7);
 
@@ -24,17 +23,15 @@ function selectDate(date){
         document.getElementById("time").disabled = false;   
         localStorage.setItem("date", date);
     }
-
-   
 }
 
-function selectTime(time){
+function selectTime(time){ //vybrání speceifiké session a vypsání userovi
     if(time >= 0){
         displaySession(localStorage.getItem("date"), time);
     }
 }
 
-function displaySession(date, time){
+function displaySession(date, time){ //vypisování specifické session userovi
     document.getElementById("session-details").style.display = "block";
     for (let i = 0; i < sessions.length; i++) {
         if(sessions[i].date == date){
@@ -56,7 +53,7 @@ function displaySession(date, time){
     }
 }
 
-function checkButton(count, date, time){
+function checkButton(count, date, time){ //vypíná/zapína button na rezervaci místa
     let session_date = new Date(date);
     let current_date = new Date();
 
@@ -89,7 +86,7 @@ function checkButton(count, date, time){
     return "";
 }
 
-function reserveSeat(date, time){
+function reserveSeat(date, time){ //rezervuje místo userovi, upraví localStorage a zase vypíše upravená data userovi
     for (let i = 0; i < sessions.length; i++) {
         if(sessions[i].date == date){
             console.log(sessions[i].sessions[time].available_seats);
@@ -104,7 +101,7 @@ function reserveSeat(date, time){
     }
 }
 
-function dateFormat(time12h){
+function dateFormat(time12h){ // vrací 24h formát času z 12h
     const [time, modifier] = time12h.split(' ');
 
     let [hours, minutes] = time.split(':');
